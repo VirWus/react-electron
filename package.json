@@ -34,7 +34,8 @@
     "react-transition-group": "^4.4.1",
     "sass": "^1.32.8",
     "tailwindcss": "^3.1.8",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.19"
   },
   "main": "public/main.js",
   "homepage": "./",
