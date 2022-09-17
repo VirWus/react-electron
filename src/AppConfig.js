@@ -104,20 +104,18 @@ export const AppConfig = (props) => {
             <button className="layout-config-button p-link" id="layout-config-button" onClick={toggleConfigurator}>
                 <i className="pi pi-cog"></i>
             </button>
-            <Button className=" " icon="pi pi-times" onClick={hideConfigurator}/>
+            {/* <Button className=" " icon="pi pi-times" onClick={hideConfigurator}/> */}
 
             <div className="">
 
-                <h5>Themes</h5>
-          
-                <h6>Tailwind</h6>
+{/*               
                 <div className="grid free-themes">
                     <div className="col-3 text-center" >
                         <button className="p-link" onClick={e => changeTheme(e, 'tailwind-light', 'light')}>
                           
                         </button>
                     </div>
-                </div>
+                </div> */}
 
 
             </div>

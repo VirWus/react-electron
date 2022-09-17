@@ -31,6 +31,14 @@ import Crud from './pages/Crud'
 import EmptyPage from './pages/EmptyPage'
 import TimelineDemo from './pages/TimelineDemo'
 import CrudDoctors from './pages/CrudDoctors'
+import CrudProducts from './pages/CrudProducts'
+import Login from './pages/Login'
+
+import PrivateRoute from './Routes/PrivateRoute'
+import { useRecoilValue } from 'recoil';
+
+import { authAtom } from './States/Atoms/auth';
+import { useUserActions } from './Actions/users.actions';
 
 import PrimeReact from 'primereact/api'
 import { Tooltip } from 'primereact/tooltip'
@@ -39,10 +47,13 @@ import 'primereact/resources/primereact.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
 import 'primereact/resources/themes/tailwind-light/theme.css'
-import './assets/demo/flags/flags.css'
-import './assets/demo/Demos.scss'
+//import './assets/demo/flags/flags.css'
+//import './assets/demo/Demos.scss'
 import './assets/layout/layout.scss'
+//import './styles/tailwind.css'
 import './App.scss'
+import CrudStaffs from './pages/CrudStaffs'
+
 
 const { app } = window.require('@electron/remote')
 
@@ -57,6 +68,9 @@ function App() {
   const [mobileTopbarMenuActive, setMobileTopbarMenuActive] = useState(false)
   const copyTooltipRef = useRef()
   const location = useLocation()
+  const userActions = useUserActions();
+
+  const auth = useRecoilValue(authAtom);
 
   PrimeReact.ripple = true
 
@@ -172,176 +186,140 @@ function App() {
       icon: 'pi pi-fw pi-search',
       items: [
         {
-          label: 'Appointments',
-          icon: 'pi pi-fw pi-id-card',
-          to: '/formlayout',
+          label: 'Staff',
+          icon: 'pi pi-fw pi-users',
+          to: '/staff',
           items: [
             {
-              label: 'View Appointment',
-          
+              label: 'View Staf'
             },
             {
-              label: 'Book Appointment',
-            
+              label: 'Add Staff'
             },
 
             {
-              label: 'Edit Appointment',
-              
+              label: 'Edit Staff'
             }
           ]
         },
         {
-          label: 'Doctors',
-          icon: 'pi pi-fw pi-user',
-          to: '/Doctors',
-          items: [
-            {
-              label: 'All Doctor',
-           
-            },
-            {
-              label: 'Add Doctor',
-       
-            },
-
-            {
-              label: 'Edit Doctor',
-             
-            },
-
-            {
-              label: 'Profile Doctor',
-        
-            }
-          ]
-        },
-        {
-           label: 'Staff', icon: 'pi pi-fw pi-users', to: '/panel',
-          items: [
-            {
-              label: 'All Staff',
-            
-            },
-            {
-              label: 'Add Staff',
-          
-            },
-
-            {
-              label: 'Edit Staff',
-           
-            },
-
-            {
-              label: 'Profile Staff',
-          
-            }
-          ]
-        },
-        {
-          label: 'Patients',
-          icon: 'pi pi-fw pi-user-edit',
-          to: '/invalidstate',
-          items: [
-            {
-              label: 'All Patients',
-            
-            },
-            {
-              label: 'Add Patients',
-        
-            },
-
-            {
-              label: 'Edit Patients',
-          
-            },
-
-            {
-              label: 'Profile Patients',
-              
-            }
-          ]
-        },
-        {
-          label: 'Room Allotment',
-          icon: 'pi pi-fw pi-book',
-          to: '/button',
-          items: [
-            {
-              label: 'All Allotment',
-        
-            },
-            {
-              label: 'Add Allotment',
-           
-            },
-
-            {
-              label: 'Edit Allotment',
-          
-            }
-          ]
-        },
-        {
-          label: 'Pharmacy',
+          label: 'Pharmacie',
           icon: 'pi pi-fw pi-briefcase',
-          to: '/table',
+          to: '/Pharmacie',
           items: [
             {
-              label: 'All Medicine',
-             
+              label: 'All Pharmacie'
             },
             {
-              label: 'Add Medicine',
-              
+              label: 'Add Pharmacie'
+            },
+
+            {
+              label: 'Edit Pharmacie'
+            },
+
+            {
+              label: 'Profile Doctor'
             }
           ]
         },
         {
-          label: 'Departments',
+          label: 'Comptabilité',
+          icon: 'pi pi-fw pi-book',
+          to: '/Comptabilité',
+          items: [
+            {
+              label: 'All Comptabilité'
+            },
+            {
+              label: 'Add Comptabilité'
+            },
+
+            {
+              label: 'Edit Comptabilité'
+            }
+          ]
+        },
+        {
+          label: 'Maternité',
+          icon: 'pi pi-fw pi-user-edit',
+          to: '/Maternité',
+          items: [
+            {
+              label: 'All Maternité'
+            },
+            {
+              label: 'Add Maternité'
+            },
+
+            {
+              label: 'Edit Maternité'
+            }
+          ]
+        },
+        {
+          label: 'Dossier Médical',
+          icon: 'pi pi-fw pi-book',
+          to: '/Dossier',
+          items: [
+            {
+              label: 'All Dossier Médical'
+            },
+            {
+              label: 'Add Dossier Médical'
+            },
+
+            {
+              label: 'Edit Dossier Médical'
+            }
+          ]
+        },
+        {
+          label: 'Imagerie Médical',
+          icon: 'pi pi-fw pi-briefcase',
+          to: '/Imagerie',
+          items: [
+            {
+              label: 'All Imagerie Médical'
+            },
+            {
+              label: 'Add Imagerie Médical'
+            }
+          ]
+        },
+        {
+          label: 'PMA',
           icon: 'pi pi-fw pi-building',
-          to: '/list',
+          to: '/PMA',
+        },
+        {
+          label: 'Consultation',
+          icon: 'pi pi-fw pi-database',
+          to: '/Consultation',
           items: [
             {
-              label: 'All Departments',
-             
+              label: 'Consultation'
             },
             {
-              label: 'Add Departments',
-          
+              label: 'Issued Consultation'
             }
           ]
         },
         {
-          label: 'Inventory',
-          icon: 'pi pi-fw pi-database',
-          to: '/tree',
+          label: 'Stock',
+          icon: 'pi pi-fw pi-server',
+          to: '/Stock',
           items: [
             {
-              label: 'Item Stock List',
-          
+              label: 'Stock'
             },
             {
-              label: 'Issued Items',
-        
+              label: 'Issued Stock'
             }
           ]
         }
       ]
-    },
-        {
-        label: 'Account',
-      
-        items: [{
-            
-          label: 'Logout',
-          icon: 'pi pi-fw pi-times',
-          to: '/logout'
-        }
-          ]
-        }
+    }
   ]
 
   const addClass = (element, className) => {
@@ -373,105 +351,97 @@ function App() {
     'p-ripple-disabled': ripple === false,
     'layout-theme-light': layoutColorMode === 'light'
   })
-// if(singin){
-     return (
-        <div className={wrapperClass} onClick={onWrapperClick}>
-      <Tooltip
-        ref={copyTooltipRef}
-        target=".block-action-copy"
-        position="bottom"
-        content="Copied to clipboard"
-        event="focus"
-      />
 
-      <AppTopbar
-        onToggleMenuClick={onToggleMenuClick}
+  if (!auth) return <Login/>;
+
+  if (location.pathname === "/") return <PrivateRoute path="/" component={Dashboard}/>
+
+  return (
+    <div className={wrapperClass} onClick={onWrapperClick}>
+     
+    <Tooltip
+      ref={copyTooltipRef}
+      target=".block-action-copy"
+      position="bottom"
+      content="Copied to clipboard"
+      event="focus"
+    />
+
+    <AppTopbar
+      onToggleMenuClick={onToggleMenuClick}
+      layoutColorMode={layoutColorMode}
+      mobileTopbarMenuActive={mobileTopbarMenuActive}
+      onMobileTopbarMenuClick={onMobileTopbarMenuClick}
+      onMobileSubTopbarMenuClick={onMobileSubTopbarMenuClick}
+    />
+
+    <div className="layout-sidebar" onClick={onSidebarClick}>
+      <AppMenu
+        model={menu}
+        onMenuItemClick={onMenuItemClick}
         layoutColorMode={layoutColorMode}
-        mobileTopbarMenuActive={mobileTopbarMenuActive}
-        onMobileTopbarMenuClick={onMobileTopbarMenuClick}
-        onMobileSubTopbarMenuClick={onMobileSubTopbarMenuClick}
       />
-
-      <div className="layout-sidebar" onClick={onSidebarClick}>
-        <AppMenu
-          model={menu}
-          onMenuItemClick={onMenuItemClick}
-          layoutColorMode={layoutColorMode}
-        />
-      </div>
-
-      <div className="layout-main-container">
-        <div className="layout-main">
-         
-        <Route path="/" exact render={() => <Dashboard colorMode={layoutColorMode} location={location} />} />
-
-          
-          <Route path="/formlayout" component={FormLayoutDemo} />
-          <Route path="/input" component={InputDemo} />
-          <Route path="/floatlabel" component={FloatLabelDemo} />
-          <Route path="/invalidstate" component={InvalidStateDemo} />
-          <Route path="/button" component={ButtonDemo} />
-          <Route path="/table" component={TableDemo} />
-          <Route path="/list" component={ListDemo} />
-          <Route path="/tree" component={TreeDemo} />
-          <Route path="/panel" component={PanelDemo} />
-          <Route path="/overlay" component={OverlayDemo} />
-          <Route path="/media" component={MediaDemo} />
-          <Route path="/menu" component={MenuDemo} />
-          <Route path="/messages" component={MessagesDemo} />
-         
-          <Route path="/Doctors" component={CrudDoctors} />
-
-          <Route path="/file" component={FileDemo} />
-          <Route
-            path="/chart"
-            render={() => (
-              <ChartDemo colorMode={layoutColorMode} location={location} />
-            )}
-          />
-          <Route path="/misc" component={MiscDemo} />
-          <Route path="/timeline" component={TimelineDemo} />
-          <Route path="/crud" component={Crud} />
-          <Route path="/empty" component={EmptyPage} />
-          <Route path="/documentation" component={Documentation} />
-        </div>
-
-        <AppFooter layoutColorMode={layoutColorMode} />
-      </div>
-
-      <AppConfig
-        rippleEffect={ripple}
-        onRippleEffect={onRipple}
-        inputStyle={inputStyle}
-        onInputStyleChange={onInputStyleChange}
-        layoutMode={layoutMode}
-        onLayoutModeChange={onLayoutModeChange}
-        layoutColorMode={layoutColorMode}
-        onColorModeChange={onColorModeChange}
-      />
-
-      <CSSTransition
-        classNames="layout-mask"
-        timeout={{ enter: 200, exit: 200 }}
-        in={mobileMenuActive}
-        unmountOnExit
-      >
-        <div className="layout-mask p-component-overlay"></div>
-      </CSSTransition>
     </div>
-     )
-// }else{ 
-//     return(
-//         <div className="layout-main-container">
-//         <div className="layout-main">
-         
-//         <Login  />
-//         </div></div>
- //  )
- 
-        
-//}
- 
+
+    <div className="layout-main-container">
+      <div className="layout-main">
+      
+
+        <PrivateRoute path="/formlayout" component={FormLayoutDemo} />
+        <PrivateRoute path="/input" component={InputDemo} />
+        <PrivateRoute path="/floatlabel" component={FloatLabelDemo} />
+        <PrivateRoute path="/invalidstate" component={InvalidStateDemo} />
+        <PrivateRoute path="/button" component={ButtonDemo} />
+        <PrivateRoute path="/table" component={TableDemo} />
+        <PrivateRoute path="/list" component={ListDemo} />
+        <PrivateRoute path="/tree" component={TreeDemo} />
+        <PrivateRoute path="/panel" component={PanelDemo} />
+        <PrivateRoute path="/overlay" component={OverlayDemo} />
+        <PrivateRoute path="/media" component={MediaDemo} />
+        <PrivateRoute path="/menu" component={MenuDemo} />
+        <PrivateRoute path="/messages" component={MessagesDemo} />
+        <PrivateRoute path="/doctors" component={CrudDoctors} />
+        <PrivateRoute path="/pharmacy" component={CrudProducts} />
+
+        <PrivateRoute path="/file" component={FileDemo} />
+        <PrivateRoute
+          path="/chart"
+          render={() => (
+            <ChartDemo colorMode={layoutColorMode} location={location} />
+          )}
+        />
+        <PrivateRoute path="/misc" component={MiscDemo} />
+        <PrivateRoute path="/timeline" component={TimelineDemo} />
+        <PrivateRoute path="/crud" component={Crud} />
+        <PrivateRoute path="/staff" component={CrudStaffs} />
+        <PrivateRoute path="/empty" component={EmptyPage} />
+        <PrivateRoute path="/documentation" component={Documentation} />
+      </div>
+
+      <AppFooter layoutColorMode={layoutColorMode} />
+    </div>
+
+    <AppConfig
+      rippleEffect={ripple}
+      onRippleEffect={onRipple}
+      inputStyle={inputStyle}
+      onInputStyleChange={onInputStyleChange}
+      layoutMode={layoutMode}
+      onLayoutModeChange={onLayoutModeChange}
+      layoutColorMode={layoutColorMode}
+      onColorModeChange={onColorModeChange}
+    />
+
+    <CSSTransition
+      classNames="layout-mask"
+      timeout={{ enter: 200, exit: 200 }}
+      in={mobileMenuActive}
+      unmountOnExit
+    >
+      <div className="layout-mask p-component-overlay"></div>
+    </CSSTransition>
+  </div>
+  )
 }
 
-export default App
+export default App;

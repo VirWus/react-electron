@@ -1,8 +1,10 @@
 import React  from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { useUserActions } from './Actions/users.actions';
 
 export const AppTopbar = (props) => {
+    const userActions = useUserActions();
 
     return (
         <div className="layout-topbar">
@@ -35,6 +37,12 @@ export const AppTopbar = (props) => {
                         <button className="p-link layout-topbar-button" onClick={props.onMobileSubTopbarMenuClick}>
                             <i className="pi pi-user"/>
                             <span>Profile</span>
+                        </button>
+                    </li>
+                       <li>
+                        <button className="p-link layout-topbar-button" onClick={()=>userActions.logout()}>
+                            <i className="pi pi-sign-out"/>
+                            <span>Logout</span>
                         </button>
                     </li>
                 </ul>
