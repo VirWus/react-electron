@@ -18,7 +18,7 @@ import Barcode from 'react-barcode';
 const CrudProducts = () => {
     let emptyProduct = {
         id: null,
-        name: '',
+        title: '',
         image: null,
         description: '',
         category: null,
@@ -70,7 +70,7 @@ const CrudProducts = () => {
     const saveProduct = () => {
         setSubmitted(true);
 
-        if (product.name.trim()) {
+        if (product.title.trim()) {
             let _products = [...products];
             let _product = { ...product };
             if (product.id) {
@@ -202,7 +202,7 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Name</span>
-                {rowData.name}
+                {rowData.title}
             </>
         );
     }
@@ -210,7 +210,7 @@ const CrudProducts = () => {
     const imageBodyTemplate = (rowData) => {
         return (
          
-           <Barcode width="1" height="30" value={rowData.code} />
+           <Barcode width="1" height="30" value={rowData.id} />
             
         )
     }
@@ -246,14 +246,14 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Status</span>
-                <span className={`product-badge status-${rowData.inventoryStatus.toLowerCase()}`}>{rowData.inventoryStatus}</span>
+                <span className={`product-badge status-${rowData.brand.toLowerCase()}`}>{rowData.brand}</span>
             </>
         )
     }
 
     const actionBodyTemplate = (rowData) => {
         return (
-            <div className="actions">
+            <div className="actions flex p-justify-content-center">
                 <Button icon="pi pi-pencil" className="p-button-rounded p-button-success mr-2" onClick={() => editProduct(rowData)} />
                 <Button icon="pi pi-trash" className="p-button-rounded p-button-warning mt-2" onClick={() => confirmDeleteProduct(rowData)} />
             </div>
@@ -303,7 +303,7 @@ const CrudProducts = () => {
                         globalFilter={globalFilter} emptyMessage="No products found." header={header} responsiveLayout="scroll">
                         <Column selectionMode="multiple" headerStyle={{ width: '3rem'}}></Column>
                         <Column field="code" header="Code" sortable body={codeBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
-                        <Column field="name" header="Name" sortable body={nameBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
+                        <Column field="title" header="Name" sortable body={nameBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
                        
                         <Column field="price" header="Price" body={priceBodyTemplate} sortable headerStyle={{ width: '14%', minWidth: '8rem' }}></Column>
                         <Column field="category" header="Category" sortable body={categoryBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
@@ -316,9 +316,9 @@ const CrudProducts = () => {
                     <Dialog visible={productDialog} style={{ width: '450px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
                         { <Barcode value={product.code}/>}
                         <div className="field">
-                            <label htmlFor="name">Name</label>
-                            <InputText id="name" value={product.name} onChange={(e) => onInputChange(e, 'name')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.name })} />
-                            {submitted && !product.name && <small className="p-invalid">Name is required.</small>}
+                            <label htmlFor="title">Name</label>
+                            <InputText id="title" value={product.title} onChange={(e) => onInputChange(e, 'title')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.title })} />
+                            {submitted && !product.title && <small className="p-invalid">Name is required.</small>}
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
@@ -362,7 +362,7 @@ const CrudProducts = () => {
                     <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
                         <div className="flex align-items-center justify-content-center">
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                            {product && <span>Are you sure you want to delete <b>{product.name}</b>?</span>}
+                            {product && <span>Are you sure you want to delete <b>{product.title}</b>?</span>}
                         </div>
                     </Dialog>
 

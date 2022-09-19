@@ -1,37 +1,46 @@
 import React, {useEffect } from 'react'
-import { Button } from 'primereact/button'
 import { Link } from 'react-router-dom'
-import { Card } from 'primereact/card';
 
 const Dashboard = props => {
-
-
 
   useEffect(() => {
  
   }, [])
 
-  const header = (
-    <img alt="Card" src="images/usercard.png" onError={(e) => e.target.src='https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} />
-);
 
   return (
-    <div className="grid m-8">
 
-      
+    <div className="grid m-8">
+ 
       <div className="col-12 lg:col-6 xl:col-3 ">
-        <Link to={'/pharmacy'}>
+      <Link to={'/pharmacy'}>
           {' '}
-             <Card className='bg-orange-100 shadow-2' title="Pharmacy" subTitle="Pharmacy depots"  header={header}>
-                <p className="m-0">   </p>
-            </Card>
+          <div className="card mb-0 transition-colors transition-duration-500 bg-blue-500 hover:bg-yellow-500
+       cursor-pointer">
+            <div className="flex justify-content-between mb-3 ">
+              <div>
+                <span className="block text-500 font-medium mb-3">
+                  Pharmacy
+                </span>
+                <div className="text-900 font-medium text-xl">12</div>
+              </div>
+              <div
+                className="flex align-items-center justify-content-center bg-orange-100 border-round"
+                style={{ width: '2.5rem', height: '2.5rem' }}
+              >
+                <i className="pi pi-inbox text-orange-500 text-xl" />
+              </div>
+            </div>
+            <span className="text-green-500 font-medium">+2 </span>
+            <span className="text-500">since last week</span>
+          </div>{' '}
         </Link>
       </div>
 
-      <div className="col-12 lg:col-6 xl:col-3">
+      <div className="col-12 lg:col-6 xl:col-3 transition-duration-500 transition-shaddow transition-duration-500 shaddow-2 hover:shaddow-8">
         <Link to={'/Comptabilite'}>
           {' '}
-          <div className="card mb-0">
+          <div className="card mb-0 ">
             <div className="flex justify-content-between mb-3">
               <div>
                 <span className="block text-500 font-medium mb-3">

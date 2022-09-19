@@ -221,7 +221,7 @@ const CrudStaffs = () => {
         return (
             <>
                 <span className="p-column-title">Image</span>
-                <img src={`${rowData.image}`} alt={rowData.image} className="shadow-2" width="100" />
+                <img src={`${rowData.image}`} alt={rowData.image} className="shadow-2" width="60" />
             </>
         )
     }

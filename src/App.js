@@ -9,29 +9,9 @@ import { AppMenu } from './AppMenu'
 import { AppConfig } from './AppConfig'
 
 import Dashboard from './components/Dashboard'
-import ButtonDemo from './components/ButtonDemo'
-import ChartDemo from './components/ChartDemo'
-import Documentation from './components/Documentation'
-import FileDemo from './components/FileDemo'
-import FloatLabelDemo from './components/FloatLabelDemo'
-import FormLayoutDemo from './components/FormLayoutDemo'
-import InputDemo from './components/InputDemo'
-import ListDemo from './components/ListDemo'
-import MenuDemo from './components/MenuDemo'
-import MessagesDemo from './components/MessagesDemo'
-import MiscDemo from './components/MiscDemo'
-import OverlayDemo from './components/OverlayDemo'
-import MediaDemo from './components/MediaDemo'
-import PanelDemo from './components/PanelDemo'
-import TableDemo from './components/TableDemo'
-import TreeDemo from './components/TreeDemo'
-import InvalidStateDemo from './components/InvalidStateDemo'
-
-import Crud from './pages/Crud'
-import EmptyPage from './pages/EmptyPage'
-import TimelineDemo from './pages/TimelineDemo'
-import CrudDoctors from './pages/CrudDoctors'
+import CrudStaffs from './pages/CrudStaffs'
 import CrudProducts from './pages/CrudProducts'
+
 import Login from './pages/Login'
 
 import PrivateRoute from './Routes/PrivateRoute'
@@ -52,7 +32,6 @@ import 'primereact/resources/themes/tailwind-light/theme.css'
 import './assets/layout/layout.scss'
 //import './styles/tailwind.css'
 import './App.scss'
-import CrudStaffs from './pages/CrudStaffs'
 
 
 const { app } = window.require('@electron/remote')
@@ -205,7 +184,7 @@ function App() {
         {
           label: 'Pharmacie',
           icon: 'pi pi-fw pi-briefcase',
-          to: '/Pharmacie',
+          to: '/pharmacy',
           items: [
             {
               label: 'All Pharmacie'
@@ -227,6 +206,7 @@ function App() {
           label: 'Comptabilité',
           icon: 'pi pi-fw pi-book',
           to: '/Comptabilité',
+          disabled:true,
           items: [
             {
               label: 'All Comptabilité'
@@ -244,6 +224,7 @@ function App() {
           label: 'Maternité',
           icon: 'pi pi-fw pi-user-edit',
           to: '/Maternité',
+          disabled:true,
           items: [
             {
               label: 'All Maternité'
@@ -261,6 +242,7 @@ function App() {
           label: 'Dossier Médical',
           icon: 'pi pi-fw pi-book',
           to: '/Dossier',
+          disabled:true,
           items: [
             {
               label: 'All Dossier Médical'
@@ -278,6 +260,7 @@ function App() {
           label: 'Imagerie Médical',
           icon: 'pi pi-fw pi-briefcase',
           to: '/Imagerie',
+          disabled:true,
           items: [
             {
               label: 'All Imagerie Médical'
@@ -291,11 +274,13 @@ function App() {
           label: 'PMA',
           icon: 'pi pi-fw pi-building',
           to: '/PMA',
+          disabled:true,
         },
         {
           label: 'Consultation',
           icon: 'pi pi-fw pi-database',
           to: '/Consultation',
+          disabled:true,
           items: [
             {
               label: 'Consultation'
@@ -309,6 +294,7 @@ function App() {
           label: 'Stock',
           icon: 'pi pi-fw pi-server',
           to: '/Stock',
+          disabled:true,
           items: [
             {
               label: 'Stock'
@@ -385,37 +371,9 @@ function App() {
 
     <div className="layout-main-container">
       <div className="layout-main">
-      
-
-        <PrivateRoute path="/formlayout" component={FormLayoutDemo} />
-        <PrivateRoute path="/input" component={InputDemo} />
-        <PrivateRoute path="/floatlabel" component={FloatLabelDemo} />
-        <PrivateRoute path="/invalidstate" component={InvalidStateDemo} />
-        <PrivateRoute path="/button" component={ButtonDemo} />
-        <PrivateRoute path="/table" component={TableDemo} />
-        <PrivateRoute path="/list" component={ListDemo} />
-        <PrivateRoute path="/tree" component={TreeDemo} />
-        <PrivateRoute path="/panel" component={PanelDemo} />
-        <PrivateRoute path="/overlay" component={OverlayDemo} />
-        <PrivateRoute path="/media" component={MediaDemo} />
-        <PrivateRoute path="/menu" component={MenuDemo} />
-        <PrivateRoute path="/messages" component={MessagesDemo} />
-        <PrivateRoute path="/doctors" component={CrudDoctors} />
-        <PrivateRoute path="/pharmacy" component={CrudProducts} />
-
-        <PrivateRoute path="/file" component={FileDemo} />
-        <PrivateRoute
-          path="/chart"
-          render={() => (
-            <ChartDemo colorMode={layoutColorMode} location={location} />
-          )}
-        />
-        <PrivateRoute path="/misc" component={MiscDemo} />
-        <PrivateRoute path="/timeline" component={TimelineDemo} />
-        <PrivateRoute path="/crud" component={Crud} />
+ 
         <PrivateRoute path="/staff" component={CrudStaffs} />
-        <PrivateRoute path="/empty" component={EmptyPage} />
-        <PrivateRoute path="/documentation" component={Documentation} />
+        <PrivateRoute path="/pharmacy" component={CrudProducts} />
       </div>
 
       <AppFooter layoutColorMode={layoutColorMode} />

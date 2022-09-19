@@ -61,14 +61,14 @@ const AppSubmenu = (props) => {
 
         if (item.to) {
             return (
-                <NavLink aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" className="p-ripple" activeClassName="router-link-active router-link-exact-active" to={item.to} onClick={(e) => onMenuItemClick(e, item, i)} exact target={item.target}>
+                <NavLink aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" className={item.disabled ? "p-ripple p-disabled":"p-ripple"} activeClassName="router-link-active router-link-exact-active" to={item.to} onClick={(e) => onMenuItemClick(e, item, i)} exact target={item.target}>
                     {content}
                 </NavLink>
             )
         }
         else {
             return (
-                <a tabIndex="0" aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" href={item.url} className="p-ripple" onClick={(e) => onMenuItemClick(e, item, i)} target={item.target}>
+                <a tabIndex="0" aria-label={item.label} onKeyDown={onKeyDown} role="menuitem" href={item.url} className={item.disabled ? "p-ripple p-disabled":"p-ripple "}  onClick={(e) => onMenuItemClick(e, item, i)} target={item.target}>
                     {content}
                 </a>
             );

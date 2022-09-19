@@ -7,14 +7,19 @@ export const AppTopbar = (props) => {
     const userActions = useUserActions();
 
     return (
-        <div className="layout-topbar">
+        <div className="layout-topbar p-4"> 
+         
+         
+          <button type="button" className="p-link  !bg-spacecadet layout-topbar-button" onClick={props.onToggleMenuClick}>
+                <i className="pi pi-bars"/>
+            </button>
+
+
             <Link to="/" className="layout-topbar-logo">
                 <span>Clinique Akhrouf</span>
             </Link>
 
-            <button type="button" className="p-link  !bg-spacecadet layout-topbar-button" onClick={props.onToggleMenuClick}>
-                <i className="pi pi-bars"/>
-            </button>
+         
 
             <button type="button" className="p-link layout-topbar-menu-button layout-topbar-button" onClick={props.onMobileTopbarMenuClick}>
                 <i className="pi pi-ellipsis-v" />
