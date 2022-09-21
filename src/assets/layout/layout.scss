@@ -6,3 +6,311 @@
 //     overflow-y: hidden; /* Hide vertical scrollbar */
 //     overflow-x: hidden; /* Hide horizontal scrollbar */
 //   }
+
+//example1
+.cardsB {
+    display: flex;
+    align-items: flex-start;
+      justify-content: center;
+  }
+  
+  .cardB {
+    background: #fff;
+    width: 15em;
+    height: 15em;
+    border-radius: 100% 100%;
+   // margin: 1em;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25), 0 8px 16px -8px hsla(0, 0%, 0%, 0.3), 0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
+    transition: all ease 200ms;
+    text-align: center;
+  }
+  
+  .cardB:hover {
+    transform: scale(1.02);
+    box-shadow: 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02);
+  }
+  
+  .cardB img {
+    width: 100%;
+    object-fit: cover;
+
+  }
+
+///example2
+
+.cardC--0 .cardC__img, .cardC--0 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?cs=srgb&dl=pexels-rfstudio-3825586.jpg&fm=jpg');
+}
+.cardC--1 .cardC__img, .cardC--1 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/139398/thermometer-headache-pain-pills-139398.jpeg?cs=srgb&dl=pexels-pixabay-139398.jpg&fm=jpg');
+}
+.cardC--2 .cardC__img, .cardC--2 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/4476375/pexels-photo-4476375.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4476375.jpg&fm=jpg');
+}
+.cardC--3 .cardC__img, .cardC--3 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/325690/pexels-photo-325690.jpeg?cs=srgb&dl=pexels-rene-asmussen-325690.jpg&fm=jpg');
+}
+.cardC--4 .cardC__img, .cardC--4 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/6823394/pexels-photo-6823394.jpeg?cs=srgb&dl=pexels-artem-podrez-6823394.jpg&fm=jpg');
+}
+.cardC--5 .cardC__img, .cardC--5 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/7089626/pexels-photo-7089626.jpeg?cs=srgb&dl=pexels-mart-production-7089626.jpg&fm=jpg');
+}
+.cardC--6 .cardC__img, .cardC--6 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?cs=srgb&dl=pexels-pixabay-40568.jpg&fm=jpg');
+}
+.cardC--7 .cardC__img, .cardC--7 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/7088498/pexels-photo-7088498.jpeg?cs=srgb&dl=pexels-mart-production-7088498.jpg&fm=jpg');
+}
+.cardC--8 .cardC__img, .cardC--8 .cardC__img--hover {
+    background-image: url('https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?cs=srgb&dl=pexels-tiger-lily-4483610.jpg&fm=jpg');
+}
+
+.cardC__img {
+    visibility: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 12em;
+    height: 12em;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
+}
+
+.cardC__info-hover {
+    position: absolute;
+    padding: 16px;
+    width: 100%;
+    opacity: 0;
+    top: 0;
+}
+
+.cardC__img--hover {
+    transition: 0.2s all ease-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    position: absolute;
+    height: 60%;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    top: 0;
+}
+.cardC {
+  margin-right: 25px;
+  transition: all .4s cubic-bezier(0.175, 0.785, 0, 1);
+  background-color:hsl(229, 76%, 66%);
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+}
+.cardC:hover {
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    transform: scale(1.05, 1.05);
+    color:#fff;
+}
+
+.cardC__info {
+    z-index: 2;
+  background-color: #fff;
+  border-bottom-left-radius: 12px;
+border-bottom-right-radius: 12px;
+   padding: 16px 24px 24px 24px;
+}
+
+.cardC__category {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 500;
+  color: #868686;
+}
+
+.cardC__title {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-family: 'Roboto Slab', serif;
+   
+}
+
+
+.cardC:hover .cardC__img--hover {
+    height: 100%;
+    opacity: 0.2;
+}
+
+.cardC:hover .cardC__info {
+    background-color: transparent;
+    position: relative;
+}
+
+.cardC:hover .cardC__info-hover {
+    opacity: 1;
+}
+
+  
+// example 3 
+
+
+.Pharmacie {
+    --bg-color: #ffd861;
+    --bg-color-light: #ffeeba;
+    --text-color-hover: #4C5656;
+    --box-shadow-color: rgba(255, 215, 97, 0.48);
+  }
+  
+  .Staff {
+    --bg-color: #B8F9D3;
+    --bg-color-light: #e2fced;
+    --text-color-hover: #4C5656;
+    --box-shadow-color: rgba(184, 249, 211, 0.48);
+  }
+  
+  .Comptabilité {
+    --bg-color: #CEB2FC;
+    --bg-color-light: #F0E7FF;
+    --text-color-hover: #fff;
+    --box-shadow-color: rgba(206, 178, 252, 0.48);
+  }
+  
+  .Maternite {
+    --bg-color: #DCE9FF;
+    --bg-color-light: #f1f7ff;
+    --text-color-hover: #4C5656;
+    --box-shadow-color: rgba(220, 233, 255, 0.48);
+  }
+  .PMA {
+    --bg-color: #274c9f;
+    --bg-color-light: #f1f7ff;
+    --text-color-hover: #274c9f;
+    --box-shadow-color: rgba(220, 233, 255, 0.48);
+  }
+  .Dossiers {
+    --bg-color: #5996fa;
+    --bg-color-light: #f1f7ff;
+    --text-color-hover: #5996fa;
+    --box-shadow-color: rgba(220, 233, 255, 0.48);
+  }
+  .Imagerie {
+    --bg-color: #009eb0;
+    --bg-color-light: #f1f7ff;
+    --text-color-hover: #009eb0;
+    --box-shadow-color: rgba(220, 233, 255, 0.48);
+  }
+  .Consultation {
+    --bg-color: #9c6bfe;
+    --bg-color-light: #f1f7ff;
+    --text-color-hover: #9c6bfe;
+    --box-shadow-color: rgba(220, 233, 255, 0.48);
+  } 
+  .Stock {
+    --bg-color: #07d2dd;
+    --bg-color-light: #f1f7ff;
+    --text-color-hover: #07d2dd;
+    --box-shadow-color: rgba(220, 233, 255, 0.48);
+  }
+    
+
+  .cardF {
+    width: 220px;
+    height: 220px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 14px 26px rgba(0,0,0,0.04);
+    transition: all 0.3s ease-out;
+    text-decoration: none;
+  }
+  
+  .cardF:hover {
+    transform: translateY(-5px) scale(1.005) translateZ(0);
+    box-shadow: 0 24px 36px rgba(0,0,0,0.11),
+      0 24px 46px var(--box-shadow-color);
+  }
+  
+  .cardF:hover .overlay {
+    transform: scale(4) translateZ(0);
+  }
+  
+  .cardF:hover .circle {
+    border-color: var(--bg-color-light);
+    background: var(--bg-color);
+  }
+  
+  .cardF:hover .circle:after {
+    background: var(--bg-color-light);
+  }
+  
+  .cardF:hover p {
+    color: var(--text-color-hover);
+  }
+  
+  .cardF:active {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 15px 24px rgba(0,0,0,0.11),
+      0 15px 24px var(--box-shadow-color);
+  }
+  
+  .cardF p {
+    font-size: 17px;
+    color: #4C5656;
+    margin-top: 30px;
+    z-index: 1000;
+    transition: color 0.3s ease-out;
+  }
+  
+  .circle {
+    width: 131px;
+    height: 131px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease-out;
+  }
+  
+  .circle:after {
+    content: "";
+    width: 118px;
+    height: 118px;
+    display: block;
+    position: absolute;
+    background: var(--bg-color);
+    border-radius: 50%;
+    top: 7px;
+    left: 7px;
+    transition: opacity 0.3s ease-out;
+  }
+  
+  .circle svg {
+    z-index: 10000;
+    transform: translateZ(0);
+  }
+  
+  .overlay {
+    width: 118px;
+    position: absolute; 
+    height: 118px;
+    border-radius: 50%;
+    background: var(--bg-color);
+  
+    z-index: 0;
+    transition: transform 0.3s ease-out;
+  }
+
+
