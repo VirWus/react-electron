@@ -175,7 +175,7 @@ border-bottom-right-radius: 12px;
   .Comptabilité {
     --bg-color: #CEB2FC;
     --bg-color-light: #F0E7FF;
-    --text-color-hover: #fff;
+    --text-color-hover: #4C5656;
     --box-shadow-color: rgba(206, 178, 252, 0.48);
   }
   
@@ -188,38 +188,38 @@ border-bottom-right-radius: 12px;
   .PMA {
     --bg-color: #274c9f;
     --bg-color-light: #f1f7ff;
-    --text-color-hover: #274c9f;
+    --text-color-hover: #f1f7ff;
     --box-shadow-color: rgba(220, 233, 255, 0.48);
   }
   .Dossiers {
     --bg-color: #5996fa;
     --bg-color-light: #f1f7ff;
-    --text-color-hover: #5996fa;
+    --text-color-hover: #4C5656;
     --box-shadow-color: rgba(220, 233, 255, 0.48);
   }
   .Imagerie {
     --bg-color: #009eb0;
     --bg-color-light: #f1f7ff;
-    --text-color-hover: #009eb0;
+    --text-color-hover: #4C5656;
     --box-shadow-color: rgba(220, 233, 255, 0.48);
   }
   .Consultation {
     --bg-color: #9c6bfe;
     --bg-color-light: #f1f7ff;
-    --text-color-hover: #9c6bfe;
+    --text-color-hover: #4C5656;
     --box-shadow-color: rgba(220, 233, 255, 0.48);
   } 
   .Stock {
     --bg-color: #07d2dd;
     --bg-color-light: #f1f7ff;
-    --text-color-hover: #07d2dd;
+    --text-color-hover: #4C5656;
     --box-shadow-color: rgba(220, 233, 255, 0.48);
   }
     
 
   .cardF {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -271,8 +271,8 @@ border-bottom-right-radius: 12px;
   }
   
   .circle {
-    width: 131px;
-    height: 131px;
+    width: 135px;
+    height: 135px;
     border-radius: 50%;
     background: #fff;
     border: 2px solid var(--bg-color);
@@ -303,9 +303,9 @@ border-bottom-right-radius: 12px;
   }
   
   .overlay {
-    width: 118px;
+    width: 100px;
     position: absolute; 
-    height: 118px;
+    height: 100px;
     border-radius: 50%;
     background: var(--bg-color);
   
