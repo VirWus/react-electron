@@ -171,9 +171,9 @@ border-bottom-right-radius: 12px;
     --text-color-hover: #4C5656;
     --box-shadow-color: rgba(184, 249, 211, 0.48);
   }
-  
+
   .Comptabilité {
-    --bg-color: #CEB2FC;
+    --bg-color: #2EC1AC;
     --bg-color-light: #F0E7FF;
     --text-color-hover: #4C5656;
     --box-shadow-color: rgba(206, 178, 252, 0.48);
@@ -218,8 +218,8 @@ border-bottom-right-radius: 12px;
     
 
   .cardF {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 280px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -312,5 +312,9 @@ border-bottom-right-radius: 12px;
     z-index: 0;
     transition: transform 0.3s ease-out;
   }
+
+.backg {
+  background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );
+}
 
 

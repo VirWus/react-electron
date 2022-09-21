@@ -44,8 +44,8 @@ const Login = props => {
   })
 
   return (
-    <div className="flex align-items-center m-8 justify-content-center">
-      <div className=" flex justify-center">
+    <div className="grid align-items-center justify-content-center">
+      <div className="grid col-12 justify-content-center">
         <img
           src={loginImg}
           width="300"

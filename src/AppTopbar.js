@@ -7,7 +7,7 @@ export const AppTopbar = (props) => {
     const userActions = useUserActions();
 
     return (
-        <div className="layout-topbar p-4"> 
+        <div className="layout-topbar p-4 "> 
          
          
           <button type="button" className="p-link  !bg-spacecadet layout-topbar-button" onClick={props.onToggleMenuClick}>

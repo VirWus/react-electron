@@ -15,10 +15,10 @@ import CrudProducts from './pages/CrudProducts'
 import Login from './pages/Login'
 
 import PrivateRoute from './Routes/PrivateRoute'
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil'
 
-import { authAtom } from './States/Atoms/auth';
-import { useUserActions } from './Actions/users.actions';
+import { authAtom } from './States/Atoms/auth'
+import { useUserActions } from './Actions/users.actions'
 
 import PrimeReact from 'primereact/api'
 import { Tooltip } from 'primereact/tooltip'
@@ -33,7 +33,6 @@ import './assets/layout/layout.scss'
 //import './styles/tailwind.css'
 import './App.scss'
 
-
 const { app } = window.require('@electron/remote')
 
 function App() {
@@ -47,9 +46,9 @@ function App() {
   const [mobileTopbarMenuActive, setMobileTopbarMenuActive] = useState(false)
   const copyTooltipRef = useRef()
   const location = useLocation()
-  const userActions = useUserActions();
+  const userActions = useUserActions()
 
-  const auth = useRecoilValue(authAtom);
+  const auth = useRecoilValue(authAtom)
 
   PrimeReact.ripple = true
 
@@ -206,7 +205,7 @@ function App() {
           label: 'Comptabilité',
           icon: 'pi pi-fw pi-book',
           to: '/Comptabilité',
-          disabled:true,
+          disabled: true,
           items: [
             {
               label: 'All Comptabilité'
@@ -224,7 +223,7 @@ function App() {
           label: 'Maternité',
           icon: 'pi pi-fw pi-user-edit',
           to: '/Maternité',
-          disabled:true,
+          disabled: true,
           items: [
             {
               label: 'All Maternité'
@@ -242,7 +241,7 @@ function App() {
           label: 'Dossier Médical',
           icon: 'pi pi-fw pi-book',
           to: '/Dossier',
-          disabled:true,
+          disabled: true,
           items: [
             {
               label: 'All Dossier Médical'
@@ -260,7 +259,7 @@ function App() {
           label: 'Imagerie Médical',
           icon: 'pi pi-fw pi-briefcase',
           to: '/Imagerie',
-          disabled:true,
+          disabled: true,
           items: [
             {
               label: 'All Imagerie Médical'
@@ -274,13 +273,13 @@ function App() {
           label: 'PMA',
           icon: 'pi pi-fw pi-building',
           to: '/PMA',
-          disabled:true,
+          disabled: true
         },
         {
           label: 'Consultation',
           icon: 'pi pi-fw pi-database',
           to: '/Consultation',
-          disabled:true,
+          disabled: true,
           items: [
             {
               label: 'Consultation'
@@ -294,7 +293,7 @@ function App() {
           label: 'Stock',
           icon: 'pi pi-fw pi-server',
           to: '/Stock',
-          disabled:true,
+          disabled: true,
           items: [
             {
               label: 'Stock'
@@ -338,68 +337,80 @@ function App() {
     'layout-theme-light': layoutColorMode === 'light'
   })
 
-  if (!auth) return <Login/>;
+  if (!auth)
+    return (
+      <div className="layout-main-container backg">
+        <div className="layout-main">
+          <Login />
+        </div>
+      </div>
+    )
 
-  if (location.pathname === "/") return <PrivateRoute path="/" component={Dashboard}/>
+  if (location.pathname === '/')
+    return (
+      <div className="layout-main-container backg">
+        <div className="layout-main">
+          <PrivateRoute path="/" component={Dashboard} />
+        </div>
+      </div>
+    )
 
   return (
     <div className={wrapperClass} onClick={onWrapperClick}>
-     
-    <Tooltip
-      ref={copyTooltipRef}
-      target=".block-action-copy"
-      position="bottom"
-      content="Copied to clipboard"
-      event="focus"
-    />
-
-    <AppTopbar
-      onToggleMenuClick={onToggleMenuClick}
-      layoutColorMode={layoutColorMode}
-      mobileTopbarMenuActive={mobileTopbarMenuActive}
-      onMobileTopbarMenuClick={onMobileTopbarMenuClick}
-      onMobileSubTopbarMenuClick={onMobileSubTopbarMenuClick}
-    />
-
-    <div className="layout-sidebar" onClick={onSidebarClick}>
-      <AppMenu
-        model={menu}
-        onMenuItemClick={onMenuItemClick}
-        layoutColorMode={layoutColorMode}
+      <Tooltip
+        ref={copyTooltipRef}
+        target=".block-action-copy"
+        position="bottom"
+        content="Copied to clipboard"
+        event="focus"
       />
-    </div>
 
-    <div className="layout-main-container">
-      <div className="layout-main">
- 
-        <PrivateRoute path="/staff" component={CrudStaffs} />
-        <PrivateRoute path="/pharmacy" component={CrudProducts} />
+      <AppTopbar
+        onToggleMenuClick={onToggleMenuClick}
+        layoutColorMode={layoutColorMode}
+        mobileTopbarMenuActive={mobileTopbarMenuActive}
+        onMobileTopbarMenuClick={onMobileTopbarMenuClick}
+        onMobileSubTopbarMenuClick={onMobileSubTopbarMenuClick}
+      />
+
+      <div className="layout-sidebar" onClick={onSidebarClick}>
+        <AppMenu
+          model={menu}
+          onMenuItemClick={onMenuItemClick}
+          layoutColorMode={layoutColorMode}
+        />
       </div>
 
-      <AppFooter layoutColorMode={layoutColorMode} />
+      <div className="layout-main-container backg">
+        <div className="layout-main">
+          <PrivateRoute path="/staff" component={CrudStaffs} />
+          <PrivateRoute path="/pharmacy" component={CrudProducts} />
+        </div>
+
+        <AppFooter layoutColorMode={layoutColorMode} />
+      </div>
+
+      <AppConfig
+        rippleEffect={ripple}
+        onRippleEffect={onRipple}
+        inputStyle={inputStyle}
+        onInputStyleChange={onInputStyleChange}
+        layoutMode={layoutMode}
+        onLayoutModeChange={onLayoutModeChange}
+        layoutColorMode={layoutColorMode}
+        onColorModeChange={onColorModeChange}
+      />
+
+      <CSSTransition
+        classNames="layout-mask"
+        timeout={{ enter: 200, exit: 200 }}
+        in={mobileMenuActive}
+        unmountOnExit
+      >
+        <div className="layout-mask p-component-overlay"></div>
+      </CSSTransition>
     </div>
-
-    <AppConfig
-      rippleEffect={ripple}
-      onRippleEffect={onRipple}
-      inputStyle={inputStyle}
-      onInputStyleChange={onInputStyleChange}
-      layoutMode={layoutMode}
-      onLayoutModeChange={onLayoutModeChange}
-      layoutColorMode={layoutColorMode}
-      onColorModeChange={onColorModeChange}
-    />
-
-    <CSSTransition
-      classNames="layout-mask"
-      timeout={{ enter: 200, exit: 200 }}
-      in={mobileMenuActive}
-      unmountOnExit
-    >
-      <div className="layout-mask p-component-overlay"></div>
-    </CSSTransition>
-  </div>
   )
 }
 
-export default App;
+export default App

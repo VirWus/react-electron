@@ -107,7 +107,7 @@ const AppSubmenu = (props) => {
 export const AppMenu = (props) => {
 
     return (
-        <div className="layout-menu-container">
+        <div className="layout-menu-container ">
             <AppSubmenu items={props.model} className="layout-menu"  onMenuItemClick={props.onMenuItemClick} root={true} role="menu" />
            
         </div>
