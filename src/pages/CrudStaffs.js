@@ -182,7 +182,7 @@ const CrudStaffs = () => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <div className="my-2">
+                <div className="my-0">
                     <Button label="New" icon="pi pi-plus" className="p-button-success mr-2" onClick={openNew} />
                     <Button label="Delete" icon="pi pi-trash" className="p-button-danger" onClick={confirmDeleteSelected} disabled={!selectedStaffs || !selectedStaffs.length} />
                 </div>
@@ -221,7 +221,7 @@ const CrudStaffs = () => {
         return (
             <>
                 <span className="p-column-title">Image</span>
-                <img src={`${rowData.image}`} alt={rowData.image} className="shadow-2" width="60" />
+                <img src={`${rowData.image}`} alt={rowData.image} className="shadow-2" width="30" />
             </>
         )
     }
@@ -288,23 +288,23 @@ const CrudStaffs = () => {
             <div className="col-12">
                 <div className="card">
                     <Toast ref={toast} />
-                    <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+                    <Toolbar className="mb-2" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
                     <DataTable ref={dt} value={staffs} selection={selectedStaffs} onSelectionChange={(e) => setSelectedStaffs(e.value)}
                         dataKey="id" paginator rows={10} rowsPerPageOptions={[5, 10, 25]} className="datatable-responsive"
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} staffs"
                         globalFilter={globalFilter} emptyMessage="No staffs found." header={header} responsiveLayout="scroll">
-                        <Column selectionMode="multiple" headerStyle={{ width: '3rem'}}></Column>
-                        <Column field="code" header="Code" sortable body={codeBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
-                        <Column field="name" header="Name" sortable body={nameBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
-                        <Column header="Image" body={imageBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
-                        <Column field="type" header="Type" sortable body={categoryBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
-                        <Column field="gender" header="Gender" body={statusBodyTemplate} sortable headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
+                        <Column selectionMode="multiple" headerStyle={{ width: '2rem'}}></Column>
+                        <Column field="code" header="Code" sortable body={codeBodyTemplate} ></Column>
+                        <Column field="name" header="Name" sortable body={nameBodyTemplate} ></Column>
+                        <Column header="Image" body={imageBodyTemplate} ></Column>
+                        <Column field="type" header="Type" sortable body={categoryBodyTemplate}></Column>
+                        <Column field="gender" header="Gender" body={statusBodyTemplate} sortable ></Column>
                         <Column body={actionBodyTemplate}></Column>
                     </DataTable>
 
-                    <Dialog visible={StaffDialog} style={{ width: '450px' }} header="Staff Details" modal className="p-fluid" footer={staffDialogFooter} onHide={hideDialog}>
+                    <Dialog visible={StaffDialog} style={{ width: '850px' }} header="Staff Details" modal className="p-fluid" footer={staffDialogFooter} onHide={hideDialog}>
                         {staff.image && <img src={`${staff.image}`} alt={staff.image} width="150" className="mt-0 mx-auto mb-5 block shadow-2" />}
                         <div className="field">
                             <label htmlFor="name">Name</label>
@@ -320,19 +320,19 @@ const CrudStaffs = () => {
                             <label className="mb-3">Type</label>
                             <div className="formgrid grid">
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category1" name="category" value="Accessories" onChange={onCategoryChange} checked={staff.type === 'Admin Tech'} />
+                                    <RadioButton inputId="category1" name="category" value="AdminTech" onChange={onCategoryChange} checked={staff.type === 'Admin Tech'} />
                                     <label htmlFor="category1">Admin Tech</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category2" name="category" value="Clothing" onChange={onCategoryChange} checked={staff.type === 'Admin Metier'} />
+                                    <RadioButton inputId="category2" name="category" value="AdminMet" onChange={onCategoryChange} checked={staff.type === 'Admin Metier'} />
                                     <label htmlFor="category2">Admin Metier</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={staff.type === 'Pharmacy'} />
+                                    <RadioButton inputId="category3" name="category" value="Pharmacy" onChange={onCategoryChange} checked={staff.type === 'Pharmacy'} />
                                     <label htmlFor="category3">Pharmacy</label>
                                 </div>
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={staff.type === 'Staff'} />
+                                    <RadioButton inputId="category4" name="category" value="Staff" onChange={onCategoryChange} checked={staff.type === 'Staff'} />
                                     <label htmlFor="category4">Staff</label>
                                 </div>
                             </div>

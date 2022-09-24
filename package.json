@@ -1,8 +1,11 @@
 {
-  "name": "electron-react",
+  "name": "CliniqueDz",
+  "author": "PowerDz",
+  "description": "PowerDz",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "asar": "^0.13.0",
     "@electron/remote": "^1.0.2",
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-regular-svg-icons": "^6.2.0",

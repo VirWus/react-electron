@@ -7,6 +7,10 @@
 //     overflow-x: hidden; /* Hide horizontal scrollbar */
 //   }
 
+.p-datatable .p-datatable-tbody .tr .td{ 
+  padding: 0rem;
+}
+
 //example1
 .cardsB {
     display: flex;
@@ -218,8 +222,8 @@ border-bottom-right-radius: 12px;
     
 
   .cardF {
-    width: 250px;
-    height: 280px;
+    width: 180px;
+    height: 210px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;

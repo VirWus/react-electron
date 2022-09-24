@@ -33,8 +33,6 @@ import './assets/layout/layout.scss'
 //import './styles/tailwind.css'
 import './App.scss'
 
-const { app } = window.require('@electron/remote')
-
 function App() {
   const [layoutMode, setLayoutMode] = useState('static')
   const [layoutColorMode, setLayoutColorMode] = useState('dark')
@@ -167,107 +165,80 @@ function App() {
           label: 'Staff',
           icon: 'pi pi-fw pi-users',
           to: '/staff',
-          items: [
-            {
-              label: 'View Staf'
-            },
-            {
-              label: 'Add Staff'
-            },
-
-            {
-              label: 'Edit Staff'
-            }
-          ]
         },
         {
           label: 'Pharmacie',
           icon: 'pi pi-fw pi-briefcase',
           to: '/pharmacy',
-          items: [
-            {
-              label: 'All Pharmacie'
-            },
-            {
-              label: 'Add Pharmacie'
-            },
-
-            {
-              label: 'Edit Pharmacie'
-            },
-
-            {
-              label: 'Profile Doctor'
-            }
-          ]
+        
         },
         {
           label: 'Comptabilité',
           icon: 'pi pi-fw pi-book',
           to: '/Comptabilité',
           disabled: true,
-          items: [
-            {
-              label: 'All Comptabilité'
-            },
-            {
-              label: 'Add Comptabilité'
-            },
+          // items: [
+          //   {
+          //     label: 'All Comptabilité'
+          //   },
+          //   {
+          //     label: 'Add Comptabilité'
+          //   },
 
-            {
-              label: 'Edit Comptabilité'
-            }
-          ]
+          //   {
+          //     label: 'Edit Comptabilité'
+          //   }
+          // ]
         },
         {
           label: 'Maternité',
           icon: 'pi pi-fw pi-user-edit',
           to: '/Maternité',
           disabled: true,
-          items: [
-            {
-              label: 'All Maternité'
-            },
-            {
-              label: 'Add Maternité'
-            },
+          // items: [
+          //   {
+          //     label: 'All Maternité'
+          //   },
+          //   {
+          //     label: 'Add Maternité'
+          //   },
 
-            {
-              label: 'Edit Maternité'
-            }
-          ]
+          //   {
+          //     label: 'Edit Maternité'
+          //   }
+          // ]
         },
         {
           label: 'Dossier Médical',
           icon: 'pi pi-fw pi-book',
           to: '/Dossier',
           disabled: true,
-          items: [
-            {
-              label: 'All Dossier Médical'
-            },
-            {
-              label: 'Add Dossier Médical'
-            },
+          // items: [
+          //   {
+          //     label: 'All Dossier Médical'
+          //   },
+          //   {
+          //     label: 'Add Dossier Médical'
+          //   },
 
-            {
-              label: 'Edit Dossier Médical'
-            }
-          ]
+          //   {
+          //     label: 'Edit Dossier Médical'
+          //   }
+          // ]
         },
         {
           label: 'Imagerie Médical',
           icon: 'pi pi-fw pi-briefcase',
           to: '/Imagerie',
           disabled: true,
-          items: [
-            {
-              label: 'All Imagerie Médical'
-            },
-            {
-              label: 'Add Imagerie Médical'
-            }
-          ]
+          // items: [
+          //   {
+          //     label: 'All Imagerie Médical'
+          //   },
+          //   {
+          //     label: 'Add Imagerie Médical'
+          //   }
+          // ]
         },
         {
           label: 'PMA',
@@ -280,28 +251,28 @@ function App() {
           icon: 'pi pi-fw pi-database',
           to: '/Consultation',
           disabled: true,
-          items: [
-            {
-              label: 'Consultation'
-            },
-            {
-              label: 'Issued Consultation'
-            }
-          ]
+          // items: [
+          //   {
+          //     label: 'Consultation'
+          //   },
+          //   {
+          //     label: 'Issued Consultation'
+          //   }
+          // ]
         },
         {
           label: 'Stock',
           icon: 'pi pi-fw pi-server',
           to: '/Stock',
           disabled: true,
-          items: [
-            {
-              label: 'Stock'
-            },
-            {
-              label: 'Issued Stock'
-            }
-          ]
+          // items: [
+          //   {
+          //     label: 'Stock'
+          //   },
+          //   {
+          //     label: 'Issued Stock'
+          //   }
+          // ]
         }
       ]
     }
@@ -348,7 +319,7 @@ function App() {
 
   if (location.pathname === '/')
     return (
-      <div className="layout-main-container backg">
+      <div className="layout-main-containerDash backg">
         <div className="layout-main">
           <PrivateRoute path="/" component={Dashboard} />
         </div>
@@ -381,7 +352,7 @@ function App() {
         />
       </div>
 
-      <div className="layout-main-container backg">
+      <div className="layout-main-container">
         <div className="layout-main">
           <PrivateRoute path="/staff" component={CrudStaffs} />
           <PrivateRoute path="/pharmacy" component={CrudProducts} />

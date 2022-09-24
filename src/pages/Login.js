@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState,useRef } from 'react'
 import { InputText } from 'primereact/inputtext'
 import { Checkbox } from 'primereact/checkbox'
 import { Button } from 'primereact/button'
 import { history } from '../Helpers/history'
+import { Toast } from 'primereact/toast';
 import { useFormik } from 'formik'
 import { useUserActions } from '../Actions/users.actions'
 import loginImg from '../assets/login.png'
@@ -11,6 +12,7 @@ const Login = props => {
   const userActions = useUserActions()
   const [showMessage, setShowMessage] = useState(false)
   const [formData, setFormData] = useState({})
+  const toast = useRef(null);
 
   const formik = useFormik({
     initialValues: {
@@ -35,17 +37,18 @@ const Login = props => {
       // setFormData(data)
       //setShowMessage(true)
       // console.log(data)
-      userActions.login(data).then(() => {
-        history.push('/')
-        //alertActions.success('Registration successful');
+      userActions.register(data).then((data) => {
+        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Register', life: 3000 });
       })
       formik.resetForm()
     }
   })
 
   return (
-    <div className="grid align-items-center justify-content-center">
+
+    <div className="grid align-items-center justify-content-center">   <Toast ref={toast} />
       <div className="grid col-12 justify-content-center">
+   
         <img
           src={loginImg}
           width="300"

@@ -2891,7 +2891,7 @@ const Dashboard = props => {
   // ))
 
   const Menus = menu.map((items, key) => (
-    <div className="flex justify-content-center col-12 lg:col-6 xl:col-4">
+    <div className="flex justify-content-center col-6 lg:col-6 xl:col-2">
       <Link to={items.to}>
         <div className={"cardF "+items.label}>
           <div className="overlay"></div>

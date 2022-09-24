@@ -172,7 +172,7 @@ const CrudProducts = () => {
     const leftToolbarTemplate = () => {
         return (
             <React.Fragment>
-                <div className="my-2">
+                <div className="my-0">
                     <Button label="New" icon="pi pi-plus" className="p-button-success mr-2" onClick={openNew} />
                     <Button label="Delete" icon="pi pi-trash" className="p-button-danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !selectedProducts.length} />
                 </div>
@@ -302,13 +302,13 @@ const CrudProducts = () => {
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
                         globalFilter={globalFilter} emptyMessage="No products found." header={header} responsiveLayout="scroll">
                         <Column selectionMode="multiple" headerStyle={{ width: '3rem'}}></Column>
-                        <Column field="code" header="Code" sortable body={codeBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
-                        <Column field="title" header="Name" sortable body={nameBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
+                        <Column field="code" header="Code" sortable body={codeBodyTemplate} ></Column>
+                        <Column field="title" header="Name" sortable body={nameBodyTemplate} ></Column>
                        
-                        <Column field="price" header="Price" body={priceBodyTemplate} sortable headerStyle={{ width: '14%', minWidth: '8rem' }}></Column>
-                        <Column field="category" header="Category" sortable body={categoryBodyTemplate} headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
+                        <Column field="price" header="Price" body={priceBodyTemplate} sortable ></Column>
+                        <Column field="category" header="Category" sortable body={categoryBodyTemplate} ></Column>
                        
-                        <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable headerStyle={{ width: '14%', minWidth: '10rem' }}></Column>
+                        <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable ></Column>
                         <Column header="Image" body={imageBodyTemplate} headerStyle={{ width: '5%', minWidth: '2rem' }}></Column>
                         <Column body={actionBodyTemplate}></Column>
                     </DataTable>
