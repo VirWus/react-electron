@@ -39,8 +39,11 @@ const CrudProducts = () => {
     const toast = useRef(null);
     const dt = useRef(null);
     const productService = new ProductService();
+    const refInput = React.createRef();
 
     useEffect(() => {
+
+        refInput.current.focus();
         productService.getProducts().then(data => setProducts(data));
     }, []);
 
@@ -211,7 +214,7 @@ const CrudProducts = () => {
     const imageBodyTemplate = (rowData) => {
         return (
          
-           <Barcode width="1" height="30" value={rowData.id} />
+           <Barcode width="1" height="30" value={rowData.barcode} />
             
         )
     }
@@ -266,7 +269,7 @@ const CrudProducts = () => {
             <h5 className="m-0">Manage Products</h5>
             <span className="block mt-2 md:mt-0 p-input-icon-left">
                 <i className="pi pi-search" />
-                <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
+                <InputText type="search" ref={refInput}  onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
             </span>
         </div>
     );
@@ -304,13 +307,13 @@ const CrudProducts = () => {
                         globalFilter={globalFilter} emptyMessage="No products found." header={header} responsiveLayout="scroll">
                         <Column selectionMode="multiple" headerStyle={{ width: '3rem'}}></Column>
                         <Column field="code" header="Code" sortable body={codeBodyTemplate} ></Column>
-                        <Column field="title" header="Name" sortable body={nameBodyTemplate} ></Column>
+                        <Column field="name" header="Name" sortable body={nameBodyTemplate} ></Column>
                        
-                        <Column field="price" header="Price" body={priceBodyTemplate} sortable ></Column>
-                        <Column field="category" header="Category" sortable body={categoryBodyTemplate} ></Column>
+                        <Column field="list_price" header="Price" body={priceBodyTemplate} sortable ></Column>
+                        <Column field="type" header="Category" sortable body={categoryBodyTemplate} ></Column>
                        
                         <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable ></Column>
-                        <Column header="Image" body={imageBodyTemplate} headerStyle={{ width: '5%', minWidth: '2rem' }}></Column>
+                        <Column field="barcode" header="Barcode" body={imageBodyTemplate} headerStyle={{ width: '5%', minWidth: '2rem' }}></Column>
                         <Column body={actionBodyTemplate}></Column>
                     </DataTable>
 

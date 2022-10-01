@@ -10,7 +10,8 @@ export class ProductService {
     }
 
     createProduct(article) {
-        return axios.get('http://127.0.0.1:5000//create_article', { params: { article: article } }).then(res => console.log(res)//res.data[1].articles
+        
+        return axios.get('http://127.0.0.1:5000/create_article', { params: { article: article[1].name }}).then(res => console.log(res)//res.data[1].articles
         );
     }
 
