@@ -38,9 +38,9 @@ const CrudProducts = () => {
     const [globalFilter, setGlobalFilter] = useState(null);
     const toast = useRef(null);
     const dt = useRef(null);
+    const productService = new ProductService();
 
     useEffect(() => {
-        const productService = new ProductService();
         productService.getProducts().then(data => setProducts(data));
     }, []);
 
@@ -70,7 +70,7 @@ const CrudProducts = () => {
     const saveProduct = () => {
         setSubmitted(true);
 
-        if (product.title.trim()) {
+        if (product.name.trim()) {
             let _products = [...products];
             let _product = { ...product };
             if (product.id) {
@@ -86,6 +86,7 @@ const CrudProducts = () => {
                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
             }
 
+            productService.createProduct(_products).then(data => console.log(data));
             setProducts(_products);
             setProductDialog(false);
             setProduct(emptyProduct);
@@ -193,7 +194,7 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Code</span>
-                {rowData.code}
+                {rowData.id}
             </>
         );
     }
@@ -202,7 +203,7 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Name</span>
-                {rowData.title}
+                {rowData.name}
             </>
         );
     }
@@ -219,7 +220,7 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Price</span>
-                {formatCurrency(rowData.price)}
+                {formatCurrency(rowData.list_price)}
             </>
         );
     }
@@ -228,7 +229,7 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Category</span>
-                {rowData.category}
+                {rowData.type}
             </>
         );
     }
@@ -237,7 +238,7 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Reviews</span>
-                <Rating value={rowData.rating} readonly cancel={false} />
+                <Rating value={rowData.list_price} readonly cancel={false} />
             </>
         );
     }
@@ -246,7 +247,7 @@ const CrudProducts = () => {
         return (
             <>
                 <span className="p-column-title">Status</span>
-                <span className={`product-badge status-${rowData.brand.toLowerCase()}`}>{rowData.brand}</span>
+                <span className={`product-badge status-${rowData.name.toLowerCase()}`}>{rowData.name}</span>
             </>
         )
     }
@@ -316,9 +317,9 @@ const CrudProducts = () => {
                     <Dialog visible={productDialog} style={{ width: '450px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
                         { <Barcode value={product.code}/>}
                         <div className="field">
-                            <label htmlFor="title">Name</label>
-                            <InputText id="title" value={product.title} onChange={(e) => onInputChange(e, 'title')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.title })} />
-                            {submitted && !product.title && <small className="p-invalid">Name is required.</small>}
+                            <label htmlFor="name">Name</label>
+                            <InputText id="name" value={product.name} onChange={(e) => onInputChange(e, 'name')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.name })} />
+                            {submitted && !product.name && <small className="p-invalid">Name is required.</small>}
                         </div>
                         <div className="field">
                             <label htmlFor="description">Description</label>
@@ -326,23 +327,11 @@ const CrudProducts = () => {
                         </div>
 
                         <div className="field">
-                            <label className="mb-3">Category</label>
+                            <label className="mb-3">Type</label>
                             <div className="formgrid grid">
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category1" name="category" value="Accessories" onChange={onCategoryChange} checked={product.category === 'Accessories'} />
-                                    <label htmlFor="category1">Accessories</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category2" name="category" value="Clothing" onChange={onCategoryChange} checked={product.category === 'Clothing'} />
-                                    <label htmlFor="category2">Clothing</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category3" name="category" value="Electronics" onChange={onCategoryChange} checked={product.category === 'Electronics'} />
-                                    <label htmlFor="category3">Electronics</label>
-                                </div>
-                                <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category4" name="category" value="Fitness" onChange={onCategoryChange} checked={product.category === 'Fitness'} />
-                                    <label htmlFor="category4">Fitness</label>
+                                    <RadioButton inputId="category1" name="type" value="Accessories" onChange={onCategoryChange} checked={product.type === 'consu'} />
+                                    <label htmlFor="category1">consu</label>
                                 </div>
                             </div>
                         </div>
@@ -350,7 +339,7 @@ const CrudProducts = () => {
                         <div className="formgrid grid">
                             <div className="field col">
                                 <label htmlFor="price">Price</label>
-                                <InputNumber id="price" value={product.price} onValueChange={(e) => onInputNumberChange(e, 'price')} mode="currency" currency="USD" locale="en-US" />
+                                <InputNumber id="price" value={product.list_price} onValueChange={(e) => onInputNumberChange(e, 'list_price')} mode="currency" currency="USD" locale="en-US" />
                             </div>
                             <div className="field col">
                                 <label htmlFor="quantity">Quantity</label>

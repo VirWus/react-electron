@@ -7,6 +7,7 @@ import { Toast } from 'primereact/toast';
 import { useFormik } from 'formik'
 import { useUserActions } from '../Actions/users.actions'
 import loginImg from '../assets/login.png'
+
 const Login = props => {
   const [checked, setChecked] = useState(false)
   const userActions = useUserActions()

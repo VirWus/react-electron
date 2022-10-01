@@ -4,7 +4,14 @@ export class ProductService {
 
 
     getProducts() {
-        return axios.get('https://dummyjson.com/products').then(res => res.data.products);
+        return axios.get('http://127.0.0.1:5000/getArticles').then(res => //console.log(res.data[1].articles)
+        res.data[1].articles
+        );
+    }
+
+    createProduct(article) {
+        return axios.get('http://127.0.0.1:5000//create_article', { params: { article: article } }).then(res => console.log(res)//res.data[1].articles
+        );
     }
 
 
