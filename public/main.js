@@ -1,11 +1,23 @@
-const { app, BrowserWindow,nativeTheme  } = require('electron')
+import { useRecoilState } from "recoil";
+import { productDialogAtom } from './States/Atoms/buttons'
 
+const { app, BrowserWindow,nativeTheme  } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
+const { globalShortcut } = require('electron');
 
 require('@electron/remote/main').initialize()
 
+
+function NewuserButton () { 
+  const [productDialog, setProductDialog] = useRecoilState(productDialogAtom);  
+  console.log(productDialog)
+  setProductDialog(true)
+  console.log(productDialog)
+}
+
 function createWindow() {
+ 
   // Create the browser window.
   const win = new BrowserWindow({
   
@@ -19,6 +31,7 @@ function createWindow() {
     autoHideMenuBar: true
   })
 
+
   nativeTheme.themeSource = 'dark'
   win.loadURL(
     isDev
@@ -29,6 +42,20 @@ function createWindow() {
 }
 
 app.on('ready', createWindow)
+
+app.on('browser-window-focus', function () {
+  globalShortcut.register("CommandOrControl+R", () => {
+      console.log("CommandOrControl+R is pressed: Shortcut Disabled");
+      NewuserButton();
+  });
+  globalShortcut.register("F5", () => {
+      console.log("F5 is pressed: Shortcut Disabled");
+  });
+});
+app.on('browser-window-blur', function () {
+  globalShortcut.unregister('CommandOrControl+R');
+  globalShortcut.unregister('F5');
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
