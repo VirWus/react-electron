@@ -14,6 +14,8 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { ProductService } from '../service/ProductService';
 import Barcode from 'react-barcode';
+import { useRecoilState } from "recoil";
+import { productDialogAtom } from '../States/Atoms/buttons'
 
 const CrudProducts = () => {
     let emptyProduct = {
@@ -29,7 +31,8 @@ const CrudProducts = () => {
     };
 
     const [products, setProducts] = useState(null);
-    const [productDialog, setProductDialog] = useState(false);
+    const [productDialog, setProductDialog] = useRecoilState(productDialogAtom);
+
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
     const [product, setProduct] = useState(emptyProduct);
