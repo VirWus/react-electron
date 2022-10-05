@@ -1,19 +1,28 @@
-import { useRecoilState } from "recoil";
-import { productDialogAtom } from './States/Atoms/buttons'
+//import { useRecoilState } from "recoil";
+//import { productDialogAtom } from './States/Atoms/buttons'
 
-const { app, BrowserWindow,nativeTheme  } = require('electron')
+//const productDialogAtom = import("./States/Atoms/buttons")
+const {useState} = require("react");
+
+const { app, BrowserWindow,nativeTheme,remote } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
-const { globalShortcut } = require('electron');
+const { globalShortcut,ipcMain,ipcRenderer } = require('electron');
+
+ipcMain.on( "setMyGlobalVariable", ( event, myGlobalVariableValue ) => {
+  global.myGlobalVariable = myGlobalVariableValue;
+} );
 
 require('@electron/remote/main').initialize()
-
+//const useRecoil = new useRecoilState()
 
 function NewuserButton () { 
-  const [productDialog, setProductDialog] = useRecoilState(productDialogAtom);  
-  console.log(productDialog)
-  setProductDialog(true)
-  console.log(productDialog)
+  //console.log(productDialogAtom)
+  //const [productDialog, setProductDialog] = useState(remote.getGlobal("productDialog"));  
+  ipcRenderer.send( "setMyGlobalVariable", true );
+  console.log(remote.getGlobal( "MyGlobalVariable" ))
+  //setProductDialog(true)
+  //console.log(productDialog)
 }
 
 function createWindow() {

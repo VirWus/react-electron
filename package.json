@@ -4,6 +4,7 @@
   "description": "PowerDz",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "asar": "^0.13.0",
     "@electron/remote": "^1.0.2",
@@ -48,7 +49,7 @@
     "web-vitals": "^0.2.4",
     "yarn": "^1.22.19"
   },
-  "main": "public/main.js",
+  "main": "public/main.cjs",
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",

@@ -15,5 +15,10 @@ export class ProductService {
         );
     }
 
+    getCategories() {
+        
+        return axios.get('http://127.0.0.1:5000/getCategories').then(res => console.log(res)//res.data[1].articles
+        );
+    }
 
 }

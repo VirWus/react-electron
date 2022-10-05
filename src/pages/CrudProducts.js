@@ -14,19 +14,20 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { ProductService } from '../service/ProductService';
 import Barcode from 'react-barcode';
+import { AutoComplete } from 'primereact/autocomplete';
+
 import { useRecoilState } from "recoil";
 import { productDialogAtom } from '../States/Atoms/buttons'
 
 const CrudProducts = () => {
     let emptyProduct = {
         id: null,
-        title: '',
+        name: '',
         image: null,
         description: '',
-        category: null,
-        price: 0,
+        type: null,
+        list_price: 0,
         quantity: 0,
-        rating: 0,
         inventoryStatus: 'INSTOCK'
     };
 
@@ -44,9 +45,30 @@ const CrudProducts = () => {
     const productService = new ProductService();
     const refInput = React.createRef();
 
+    const [filteredCategories, setFilteredCategories] = useState(null);
+    const [selectedCategorie, setSelectedCategorie] = useState(null);
+    const [categories, setCategories] = useState([]);
+
+    const searchCountry = (event) => {
+        setTimeout(() => {
+            let _filteredCategories;
+            if (!event.query.trim().length) {
+                _filteredCategories = [...categories];
+            }
+            else {
+                _filteredCategories = categories.filter((category) => {
+                    return category.name.toLowerCase().startsWith(event.query.toLowerCase());
+                });
+            }
+
+            setFilteredCategories(_filteredCategories);
+        }, 250);
+    }
+
     useEffect(() => {
 
         refInput.current.focus();
+        productService.getCategories().then(data => setCategories(data));
         productService.getProducts().then(data => setProducts(data));
     }, []);
 
@@ -240,6 +262,14 @@ const CrudProducts = () => {
         );
     }
 
+    const itemTemplate = (item) => {
+        return (
+            <div className="country-item">
+                <img alt={item.name} src={`images/flag/flag_placeholder.png`} onError={(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'} className={`flag flag-${item.code.toLowerCase()}`} />
+                <div>{item.name}</div>
+            </div>
+        );
+    }
     const ratingBodyTemplate = (rowData) => {
         return (
             <>
@@ -260,7 +290,7 @@ const CrudProducts = () => {
 
     const actionBodyTemplate = (rowData) => {
         return (
-            <div className="actions flex p-justify-content-center">
+            <div className="actions">
                 <Button icon="pi pi-pencil" className="p-button-rounded p-button-success mr-2" onClick={() => editProduct(rowData)} />
                 <Button icon="pi pi-trash" className="p-button-rounded p-button-warning mt-2" onClick={() => confirmDeleteProduct(rowData)} />
             </div>
@@ -308,7 +338,7 @@ const CrudProducts = () => {
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
                         globalFilter={globalFilter} emptyMessage="No products found." header={header} responsiveLayout="scroll">
-                        <Column selectionMode="multiple" headerStyle={{ width: '3rem'}}></Column>
+                        <Column selectionMode="multiple" headerStyle={{ width: '2rem'}}></Column>
                         <Column field="code" header="Code" sortable body={codeBodyTemplate} ></Column>
                         <Column field="name" header="Name" sortable body={nameBodyTemplate} ></Column>
                        
@@ -316,12 +346,12 @@ const CrudProducts = () => {
                         <Column field="type" header="Category" sortable body={categoryBodyTemplate} ></Column>
                        
                         <Column field="inventoryStatus" header="Status" body={statusBodyTemplate} sortable ></Column>
-                        <Column field="barcode" header="Barcode" body={imageBodyTemplate} headerStyle={{ width: '5%', minWidth: '2rem' }}></Column>
+                        <Column field="barcode" header="Barcode" body={imageBodyTemplate}></Column>
                         <Column body={actionBodyTemplate}></Column>
                     </DataTable>
 
-                    <Dialog visible={productDialog} style={{ width: '450px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
-                        { <Barcode value={product.code}/>}
+                    <Dialog visible={productDialog} style={{ width: '580px' }} header="Product Details" modal className="p-fluid" footer={productDialogFooter} onHide={hideDialog}>
+                     
                         <div className="field">
                             <label htmlFor="name">Name</label>
                             <InputText id="name" value={product.name} onChange={(e) => onInputChange(e, 'name')} required autoFocus className={classNames({ 'p-invalid': submitted && !product.name })} />
@@ -336,8 +366,10 @@ const CrudProducts = () => {
                             <label className="mb-3">Type</label>
                             <div className="formgrid grid">
                                 <div className="field-radiobutton col-6">
-                                    <RadioButton inputId="category1" name="type" value="Accessories" onChange={onCategoryChange} checked={product.type === 'consu'} />
-                                    <label htmlFor="category1">consu</label>
+                                <AutoComplete value={selectedCategorie} suggestions={filteredCategories} completeMethod={searchCountry} field="name" dropdown forceSelection itemTemplate={itemTemplate} onChange={(e) => setSelectedCategorie(e.value)} aria-label="Countries" dropdownAriaLabel="Select Country" />
+
+                                    {/* <RadioButton inputId="category1" name="type" value="Accessories" onChange={onCategoryChange} checked={product.type === 'consu'} />
+                                    <label htmlFor="category1">consu</label> */}
                                 </div>
                             </div>
                         </div>
@@ -352,6 +384,7 @@ const CrudProducts = () => {
                                 <InputNumber id="quantity" value={product.quantity} onValueChange={(e) => onInputNumberChange(e, 'quantity')} integeronly />
                             </div>
                         </div>
+                        { product.barcode && <Barcode width="1" height="30" value={product.barcode}/>}
                     </Dialog>
 
                     <Dialog visible={deleteProductDialog} style={{ width: '450px' }} header="Confirm" modal footer={deleteProductDialogFooter} onHide={hideDeleteProductDialog}>
