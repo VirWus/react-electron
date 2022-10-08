@@ -30,10 +30,10 @@ const CrudProducts = () => {
         quantity: 0,
         inventoryStatus: 'INSTOCK'
     };
-
+ 
     const [products, setProducts] = useState(null);
     const [productDialog, setProductDialog] = useRecoilState(productDialogAtom);
-
+   
     const [deleteProductDialog, setDeleteProductDialog] = useState(false);
     const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
     const [product, setProduct] = useState(emptyProduct);
@@ -66,7 +66,9 @@ const CrudProducts = () => {
     }
 
     useEffect(() => {
-
+        window.api.receive("fromMain", (data) => {
+            console.log(`Received ${data} from main process`);
+        });
         refInput.current.focus();
         productService.getCategories().then(data => setCategories(data));
         productService.getProducts().then(data => setProducts(data));

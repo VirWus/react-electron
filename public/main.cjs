@@ -7,29 +7,38 @@ const {useState} = require("react");
 const { app, BrowserWindow,nativeTheme,remote } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
-const { globalShortcut,ipcMain,ipcRenderer } = require('electron');
-
-ipcMain.on( "setMyGlobalVariable", ( event, myGlobalVariableValue ) => {
-  global.myGlobalVariable = myGlobalVariableValue;
-} );
+const { globalShortcut,ipcMain} = require('electron');
 
 require('@electron/remote/main').initialize()
 //const useRecoil = new useRecoilState()
 
+
 function NewuserButton () { 
   //console.log(productDialogAtom)
   //const [productDialog, setProductDialog] = useState(remote.getGlobal("productDialog"));  
-  ipcRenderer.send( "setMyGlobalVariable", true );
-  console.log(remote.getGlobal( "MyGlobalVariable" ))
+
+// Set MyGlobalVariable.
+    //ipcRenderer.send('show-syncSpinner-event', "true");  //remote.getGlobal('MyGlobalObject').variable_1= '4567'
+   
+    //ipcRenderer.on('spin', (event, arg) => {
+      //Do stuff with the arg variable you have passed to and from your main process
+      console.log("Button")
+    //});
+ 
   //setProductDialog(true)
   //console.log(productDialog)
 }
 
+let win;
+
 function createWindow() {
- 
+
   // Create the browser window.
-  const win = new BrowserWindow({
-  
+  win = new BrowserWindow({
+    webPreferences: {
+      contextIsolation: true, // protect against prototype pollution
+      preload: path.join(__dirname, 'preload.cjs')
+    },
     width: 1024,
     height: 768,
     minWidth: 800,
@@ -48,6 +57,7 @@ function createWindow() {
       : `file://${path.join(__dirname, '../build/index.html')}`
   )
   win.maximize();
+  
 }
 
 app.on('ready', createWindow)
@@ -55,7 +65,7 @@ app.on('ready', createWindow)
 app.on('browser-window-focus', function () {
   globalShortcut.register("CommandOrControl+R", () => {
       console.log("CommandOrControl+R is pressed: Shortcut Disabled");
-      NewuserButton();
+      //ipcMain.handle('dialog:openFile', NewuserButton)
   });
   globalShortcut.register("F5", () => {
       console.log("F5 is pressed: Shortcut Disabled");
@@ -74,6 +84,14 @@ app.on('window-all-closed', function () {
     app.quit()
   }
 })
+
+ipcMain.on("toMain", (event, args) => {
+ 
+    // Do something with file contents
+
+    // Send result back to renderer process
+    win.webContents.send("fromMain", true);
+});
 
 app.on('activate', function () {
   // On OS X it's common to re-create a window in the app when the
